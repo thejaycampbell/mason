@@ -92,6 +92,74 @@ Apply these automatically based on detected stack — don't wait to be asked:
 - Decorative images get `alt=""`. Meaningful images get descriptive alt text from mason-copy.
 - Avoid inline styles — use classes from the detected CSS system.
 
+## SEO Standard Output
+
+Every page and layout you generate must include the following. These are not optional polish — they are standard output.
+
+### Canonical tag — required on every page
+
+**Next.js App Router** (in page's `metadata` export):
+```typescript
+export const metadata: Metadata = {
+  alternates: { canonical: 'https://yourdomain.com/[page-slug]' },
+}
+```
+
+**Plain HTML / Pages Router** (in `<head>`):
+```html
+<link rel="canonical" href="https://yourdomain.com/[page-slug]" />
+```
+
+### Organization schema — required in root layout (once per site)
+
+When generating the root layout (`app/layout.tsx`, `pages/_app.tsx`, or `index.html`), include this in `<head>`. Use brand profile values — `sameAs` links should only include profiles that exist.
+
+```html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "[Brand Name from profile]",
+  "url": "https://yourdomain.com",
+  "logo": "https://yourdomain.com/logo.png",
+  "description": "[Positioning statement from brand profile]",
+  "sameAs": [
+    "https://www.linkedin.com/company/[handle]",
+    "https://twitter.com/[handle]"
+  ]
+}
+</script>
+```
+
+If the site is a SaaS product, add a second `SoftwareApplication` block on the homepage alongside `Organization`.
+
+### Content freshness — required on blog posts, research pages, and linkable assets
+
+Any page with time-sensitive content (`Article`, `BlogPosting`, research/data pages) must include:
+1. `datePublished` and `dateModified` in the page's structured data
+2. A visible "Published [Month YYYY]" or "Last updated [Month YYYY]" line near the top of the content
+
+AI engines weight recency for citation of factual content. A page with no date signal will be deprioritized over one with a clear publication date.
+
+```typescript
+// Next.js App Router — in Article page metadata and structured data
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "datePublished": "2026-04-14T00:00:00Z",
+  "dateModified": "2026-04-14T00:00:00Z",
+  "headline": "[Article title]",
+  "author": { "@type": "Organization", "name": "[Brand Name]" }
+}
+```
+
+For plain HTML:
+```html
+<time datetime="2026-04-14" class="post-date">April 14, 2026</time>
+```
+
+---
+
 ## Code Quality Checklist
 
 Before outputting each file, verify:
@@ -101,6 +169,9 @@ Before outputting each file, verify:
 - [ ] Interactive elements have accessible labels where needed
 - [ ] Responsive layout using project's existing responsive approach
 - [ ] SEO metadata included for new pages (title, description, og tags)
+- [ ] **Canonical tag present** on every page
+- [ ] **Organization schema in root layout** (first time building for this site)
+- [ ] **Freshness signals** on blog posts and research pages (datePublished, dateModified, visible date)
 - [ ] No hardcoded colors or fonts — use brand tokens from the profile
 - [ ] All copy slots filled with mason-copy content
 - [ ] File follows the project's existing naming and export conventions
@@ -133,6 +204,29 @@ Ask them to paste the error. Identify whether it's:
 - A Tailwind class that doesn't exist → swap for a class that does
 
 Never tell the user to "just ignore" a TypeScript or build error.
+
+## Pillar Page Internal Linking
+
+When building a pillar page or topic hub (a comprehensive page that anchors a content cluster), wire the internal links explicitly. GEO rewards sites that own a topic — isolated pages don't establish topic authority, linked clusters do.
+
+**Pillar page → supporting pages:** The pillar page must link to every supporting page in the cluster. Use descriptive anchor text that names the specific subtopic:
+```html
+<!-- Good: descriptive anchor that tells crawlers and AI what the target is about -->
+<a href="/blog/freelance-invoicing-tips">how to send invoices as a freelancer</a>
+
+<!-- Bad: generic anchor -->
+<a href="/blog/freelance-invoicing-tips">read more</a>
+```
+
+**Supporting pages → pillar page:** Every supporting page in the cluster must link back to the pillar with anchor text naming the pillar topic. Add a "Back to [Topic] hub" or "Part of our [Topic] guide" link near the top or bottom.
+
+**Cross-links between supporting pages:** Where relevant, link between supporting pages directly. This signals that the pages are part of a coherent topic cluster, not isolated content.
+
+When the build plan includes a pillar page structure, output:
+1. The pillar page with `<a>` links to all planned supporting pages (mark `[link TBD]` for pages not yet built)
+2. A note listing which supporting pages need a backlink to the pillar added when they're built
+
+---
 
 ## Handling Ambiguity
 

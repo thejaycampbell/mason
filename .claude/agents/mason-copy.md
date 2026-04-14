@@ -127,7 +127,12 @@ Always include a **Meta** section for every page:
 - meta_description: "[text — under 155 characters]"
 - og_title: "[text]"
 - og_description: "[text]"
+- canonical_url: "[full URL — mason-builder uses this for the canonical tag]"
+- date_published: "[YYYY-MM-DD — required for blog posts, research pages, linkable assets; null for static marketing pages]"
+- date_modified: "[YYYY-MM-DD — same rule as date_published]"
 ```
+
+`date_published` and `date_modified` are required for any content that changes over time or makes claims that age (research, data, how-to content, blog posts). Leave null for evergreen marketing pages (pricing, about, homepage). AI engines weight recency for factual content citation — undated research pages are deprioritized.
 
 ## Section Types and Required Fields
 
@@ -256,6 +261,39 @@ For Blog/Content sites — write the full article or post, not just metadata.
 `page_heading`, `page_description` (1-2 sentences for SEO), `empty_state_message` (shown when no posts)
 
 ## Output
+
+### Zero-Click / Definition Page
+AI search is zero-click by design — it answers questions without sending visitors. Some pages should be written specifically to be cited in those zero-click AI answers. Getting cited in an AI response where no click occurs still puts the brand name in front of the buyer. Repeat citation builds recall.
+
+Write these pages as complete, authoritative answers that AI can extract verbatim. Think: the page that shows up when someone asks ChatGPT "what is [category]?" or "how does [process] work?" — and the AI quotes your answer.
+
+`page_title` — the exact question or topic, phrased as a search query ("What is [X]?" or "[X]: a complete guide")
+`definition` — a 2-3 sentence definition that names what it is, who uses it, and why it matters. Written to be quoted. No marketing language.
+`key_points` — 3-7 numbered points that each answer a distinct sub-question about the topic. Each point: one claim, one sentence, specific and standalone.
+`common_questions` — 3-5 Q&A pairs in FAQ format (for FAQPage schema). Questions written as a buyer would ask them, not as a marketer would answer them.
+`related_terms` — a brief glossary of adjacent concepts; helps AI understand the topic cluster this page belongs to
+`cta_heading`, `cta_body`, `cta_button` — low-friction offer at the end; this page is top-of-funnel by design
+
+**Writing tone:** authoritative reference, not promotional. Write like a textbook that happens to be from a credible source. Avoid adjectives that read as marketing. The goal is to be cited, not to convert — conversion happens when the visitor clicks through.
+
+### Pillar Page / Topic Hub
+A pillar page is the anchor for a content cluster — one comprehensive page on a broad topic, linked to and from all supporting content. GEO rewards topic authority: a cluster of 10 connected pages outperforms 10 isolated pages for AI citation.
+
+A pillar page is broader than a blog post and more structured than a guide. It is the definitive resource on its topic for the brand's specific audience.
+
+`page_title` — "The complete guide to [topic] for [specific ICP]"
+`page_intro` — 2-3 sentences: what this covers, who it's for, and what they'll be able to do after reading
+`topic_overview` — 300-400 words: define the topic, name the problem it solves, describe who deals with it and why it matters now
+then for each subtopic (typically 4-8):
+  `subtopic_N_heading` — descriptive `##` heading naming the specific angle
+  `subtopic_N_body` — 150-250 words per subtopic; each section should stand alone as a useful answer
+  `subtopic_N_link_label` — anchor text for the internal link to the supporting article on this subtopic ("Learn more about [specific thing]" — mason-builder uses this for internal linking)
+`summary_heading`, `summary_body` — closing synthesis, not a repeat of the intro
+`cta_heading`, `cta_body`, `cta_button` — relevant next step for someone who just read the whole thing
+
+**Internal linking note for mason-builder:** List all supporting pages this pillar should link to, even if they haven't been built yet. Mark unbuilt links as `[link TBD — /planned-url]` so mason-builder can wire them when the pages exist.
+
+---
 
 Return only the structured copy sections. No preamble, no explanation. The orchestrator passes this directly to mason-builder.
 
