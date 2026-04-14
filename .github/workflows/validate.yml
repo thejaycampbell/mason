@@ -1,0 +1,145 @@
+name: Validate Mason Agent Bundle
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    name: Check required agent files
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Verify agent files exist
+        run: |
+          MISSING=()
+
+          REQUIRED_AGENTS=(
+            ".claude/agents/mason.md"
+            ".claude/agents/mason-brand.md"
+            ".claude/agents/mason-copy.md"
+            ".claude/agents/mason-builder.md"
+            ".claude/agents/mason-deploy.md"
+            ".claude/agents/mason-audit.md"
+            ".claude/agents/mason-seo.md"
+          )
+
+          for file in "${REQUIRED_AGENTS[@]}"; do
+            if [ ! -f "$file" ]; then
+              MISSING+=("$file")
+              echo "MISSING: $file"
+            else
+              echo "OK: $file"
+            fi
+          done
+
+          if [ ${#MISSING[@]} -gt 0 ]; then
+            echo ""
+            echo "Error: ${#MISSING[@]} required agent file(s) missing."
+            exit 1
+          fi
+
+          echo ""
+          echo "All ${#REQUIRED_AGENTS[@]} agent files present."
+
+      - name: Verify command files exist
+        run: |
+          MISSING=()
+
+          REQUIRED_COMMANDS=(
+            ".claude/commands/mason-build.md"
+            ".claude/commands/mason-preview.md"
+            ".claude/commands/mason-deploy.md"
+          )
+
+          for file in "${REQUIRED_COMMANDS[@]}"; do
+            if [ ! -f "$file" ]; then
+              MISSING+=("$file")
+              echo "MISSING: $file"
+            else
+              echo "OK: $file"
+            fi
+          done
+
+          if [ ${#MISSING[@]} -gt 0 ]; then
+            echo ""
+            echo "Error: ${#MISSING[@]} required command file(s) missing."
+            exit 1
+          fi
+
+          echo ""
+          echo "All ${#REQUIRED_COMMANDS[@]} command files present."
+
+      - name: Verify rules file exists
+        run: |
+          if [ ! -f ".claude/rules/mason.md" ]; then
+            echo "MISSING: .claude/rules/mason.md"
+            exit 1
+          fi
+          echo "OK: .claude/rules/mason.md"
+
+      - name: Check agent files have required frontmatter
+        run: |
+          ERRORS=()
+
+          for file in .claude/agents/mason*.md; do
+            # Check for name field
+            if ! grep -q "^name:" "$file"; then
+              ERRORS+=("$file: missing 'name:' frontmatter")
+              echo "MISSING frontmatter name: $file"
+            fi
+
+            # Check for model field
+            if ! grep -q "^model:" "$file"; then
+              ERRORS+=("$file: missing 'model:' frontmatter")
+              echo "MISSING frontmatter model: $file"
+            fi
+          done
+
+          if [ ${#ERRORS[@]} -gt 0 ]; then
+            echo ""
+            echo "Error: ${#ERRORS[@]} frontmatter issue(s) found."
+            exit 1
+          fi
+
+          echo "All agent files have required frontmatter."
+
+      - name: Verify example files present
+        run: |
+          MISSING=()
+
+          REQUIRED_EXAMPLES=(
+            "examples/saas-landing.html"
+            "examples/nextjs-saas/app/layout.tsx"
+            "examples/nextjs-saas/app/page.tsx"
+            "examples/nextjs-saas/components/layout/Header.tsx"
+            "examples/nextjs-saas/components/sections/FAQ.tsx"
+          )
+
+          for file in "${REQUIRED_EXAMPLES[@]}"; do
+            if [ ! -f "$file" ]; then
+              MISSING+=("$file")
+              echo "MISSING: $file"
+            else
+              echo "OK: $file"
+            fi
+          done
+
+          if [ ${#MISSING[@]} -gt 0 ]; then
+            echo ""
+            echo "Error: ${#MISSING[@]} example file(s) missing."
+            exit 1
+          fi
+
+          echo "All example files present."
+
+      - name: Summary
+        run: |
+          echo ""
+          echo "Mason bundle validation passed."
+          echo "Agents: 7 | Commands: 3 | Rules: 1 | Examples: verified"

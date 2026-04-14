@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Font loaded via next/font in app/layout.tsx — zero CLS, self-hosted */
+
+@layer base {
+  :root {
+    --color-bg: #0f0f17;
+    --color-surface: #17171f;
+    --color-border: #2a2a3a;
+    --color-text: #e8e8f0;
+    --color-muted: #8888a8;
+    --color-brand: #4f6ef7;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@layer utilities {
+  .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  .animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
