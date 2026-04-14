@@ -99,6 +99,7 @@ Same as Option 2. If your project has `.claude/identity/`, `.claude/voice/`, or 
 | `/mason:preview` | Spin up a local preview server at `localhost:4242` |
 | `/mason:deploy` | Detect hosting config and deploy (or guide through setup) |
 | `/mason:audit` | Review an existing site for conversion, copy, and performance gaps |
+| `/mason:seo` | Technical SEO audit — meta tags, structured data, Core Web Vitals, sitemap |
 
 ---
 
@@ -123,18 +124,26 @@ mason/
 │   │   ├── mason-brand.md    ← brand extraction
 │   │   ├── mason-copy.md     ← content writing
 │   │   ├── mason-builder.md  ← code generation
-│   │   └── mason-deploy.md   ← deployment
+│   │   ├── mason-deploy.md   ← deployment
+│   │   ├── mason-audit.md    ← site auditing
+│   │   └── mason-seo.md      ← technical SEO
 │   ├── commands/
 │   │   ├── mason-build.md
 │   │   ├── mason-preview.md
-│   │   └── mason-deploy.md
+│   │   ├── mason-deploy.md
+│   │   ├── mason-audit.md
+│   │   └── mason-seo.md
 │   └── rules/
 │       └── mason.md          ← always-on principles
 ├── scripts/
 │   └── preview-server.js     ← optional local preview server (Node 18+, no deps)
+├── examples/
+│   └── saas-landing.html     ← example output: SaaS landing page (plain HTML)
 └── docs/
     ├── standalone.md
-    └── cadence-integration.md
+    ├── cadence-integration.md
+    ├── architecture.md       ← how Mason works under the hood
+    └── troubleshooting.md    ← common issues and fixes
 ```
 
 ---
@@ -143,13 +152,15 @@ mason/
 
 Mason is a Claude Code agent bundle — no server, no framework, no dependencies beyond Claude Code itself.
 
-Under the hood, five specialized agents work in sequence:
+Under the hood, specialized agents work in sequence:
 
 - **mason** (orchestrator) — maps routes, classifies site type, runs the session
-- **mason-brand** — reads the codebase, detects component libraries, dark mode, assets
+- **mason-brand** — reads the codebase, detects component libraries, dark mode, assets, competitive positioning
 - **mason-copy** — writes all text using proven conversion frameworks (PAS, benefit-first)
 - **mason-builder** — generates code with performance patterns baked in (next/image, lazy loading, CLS prevention)
 - **mason-deploy** — detects platform (Vercel, Netlify, CI/CD) and handles deployment
+- **mason-audit** — reviews existing sites for conversion, copy, and performance gaps
+- **mason-seo** — technical SEO audit: meta tags, structured data, Core Web Vitals, sitemap
 
 ---
 
@@ -196,3 +207,5 @@ Contributions are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) to get started
 
 - [Standalone usage guide](docs/standalone.md)
 - [Cadence & Jarvis integration](docs/cadence-integration.md)
+- [Architecture — how Mason works](docs/architecture.md)
+- [Troubleshooting](docs/troubleshooting.md)

@@ -126,6 +126,30 @@ Write FAQs that handle real objections — not softballs. Good FAQ questions sta
 ### Navigation
 List of nav item labels and any CTA button text
 
+### Blog Post / Article
+For Blog/Content sites — write the full article or post, not just metadata.
+
+`post_title` — headline written for both humans and search engines (primary keyword near front)
+`post_excerpt` — 1-2 sentences for list pages and meta description
+`post_reading_time` — estimated reading time (e.g., "5 min read")
+`post_tags` — comma-separated topic tags
+`post_body` — full article content in markdown; use `##` for section headings, write complete paragraphs
+`post_cta_heading` — heading for the end-of-article CTA section
+`post_cta_body` — 1-2 sentences bridging article to CTA
+`post_cta_button` — specific action text
+
+**Writing blog posts:**
+- Open with the insight or conclusion, not with preamble ("In this article, I will...")
+- Use `##` headings to make the post scannable
+- Each section should stand alone as a useful point
+- End with a takeaway or action, not a summary of what was just said
+
+### Author Bio (Blog)
+`author_name`, `author_title`, `author_bio` (2-3 sentences), `author_image_alt`
+
+### Category / Tag Page
+`page_heading`, `page_description` (1-2 sentences for SEO), `empty_state_message` (shown when no posts)
+
 ## Output
 
 Return only the structured copy sections. No preamble, no explanation. The orchestrator passes this directly to mason-builder.

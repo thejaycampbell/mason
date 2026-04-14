@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO -->
+  <title>Dispatch — Project management built for freelancers</title>
+  <meta name="description" content="Dispatch keeps your client work organized without the overhead of enterprise tools. Used by 2,400 freelancers to ship projects on time and get paid faster.">
+  <link rel="canonical" href="https://usedispatch.co/">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Dispatch — Project management built for freelancers">
+  <meta property="og:description" content="Used by 2,400 freelancers to ship projects on time and get paid faster.">
+  <meta property="og:image" content="https://usedispatch.co/og-image.png">
+  <meta property="og:url" content="https://usedispatch.co/">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Fonts: preconnect first, then stylesheet -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Dispatch",
+    "description": "Project management built for freelancers",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD",
+      "description": "Free for up to 3 active projects"
+    }
+  }
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --color-bg: #0f0f11;
+      --color-surface: #18181b;
+      --color-border: #27272a;
+      --color-text: #fafafa;
+      --color-muted: #a1a1aa;
+      --color-primary: #6366f1;
+      --color-primary-hover: #818cf8;
+      --color-accent: #22d3ee;
+      --radius: 8px;
+      --radius-lg: 12px;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* Layout */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    .section { padding: 96px 0; }
+
+    /* Navigation */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 1px solid var(--color-border);
+      background: rgba(15, 15, 17, 0.9);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .nav-logo {
+      font-size: 1.125rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.875rem;
+      color: var(--color-muted);
+      transition: color 0.15s;
+    }
+
+    .nav-links a:hover { color: var(--color-text); }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: var(--radius);
+      font-size: 0.875rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--color-primary);
+      color: #fff;
+    }
+
+    .btn-primary:hover { background: var(--color-primary-hover); }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--color-text);
+      border: 1px solid var(--color-border);
+    }
+
+    .btn-outline:hover { border-color: var(--color-muted); }
+
+    .btn-lg {
+      padding: 14px 28px;
+      font-size: 1rem;
+      border-radius: var(--radius-lg);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 120px 0 80px;
+      text-align: center;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      background: rgba(99, 102, 241, 0.12);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      border-radius: 100px;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--color-primary-hover);
+      margin-bottom: 24px;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--color-accent);
+      border-radius: 50%;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 24px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero h1 span { color: var(--color-primary-hover); }
+
+    .hero-sub {
+      font-size: 1.125rem;
+      color: var(--color-muted);
+      max-width: 520px;
+      margin: 0 auto 40px;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .hero-note {
+      margin-top: 16px;
+      font-size: 0.8125rem;
+      color: var(--color-muted);
+    }
+
+    /* Social proof bar */
+    .proof-bar {
+      padding: 32px 0;
+      border-top: 1px solid var(--color-border);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .proof-bar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 48px;
+      flex-wrap: wrap;
+    }
+
+    .proof-stat {
+      text-align: center;
+    }
+
+    .proof-stat-number {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .proof-stat-label {
+      font-size: 0.8125rem;
+      color: var(--color-muted);
+      margin-top: 2px;
+    }
+
+    /* Features */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1px;
+      background: var(--color-border);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .feature-card {
+      background: var(--color-surface);
+      padding: 32px;
+    }
+
+    .feature-icon {
+      width: 40px;
+      height: 40px;
+      background: rgba(99, 102, 241, 0.12);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      font-size: 1.25rem;
+    }
+
+    .feature-card h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .feature-card p {
+      font-size: 0.9375rem;
+      color: var(--color-muted);
+      line-height: 1.6;
+    }
+
+    /* Section headers */
+    .section-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .section-eyebrow {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-primary-hover);
+      margin-bottom: 12px;
+    }
+
+    .section-header h2 {
+      font-size: clamp(1.75rem, 3vw, 2.5rem);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+
+    .section-header p {
+      font-size: 1.0625rem;
+      color: var(--color-muted);
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    /* How it works */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 32px;
+    }
+
+    .step {
+      display: flex;
+      gap: 16px;
+    }
+
+    .step-number {
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      background: rgba(99, 102, 241, 0.15);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--color-primary-hover);
+    }
+
+    .step-content h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .step-content p {
+      font-size: 0.9375rem;
+      color: var(--color-muted);
+    }
+
+    /* Testimonials */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+
+    .testimonial-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+    }
+
+    .testimonial-quote {
+      font-size: 0.9375rem;
+      line-height: 1.7;
+      color: var(--color-text);
+      margin-bottom: 20px;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .testimonial-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--color-border);
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .testimonial-name {
+      font-size: 0.875rem;
+      font-weight: 600;
+    }
+
+    .testimonial-role {
+      font-size: 0.8125rem;
+      color: var(--color-muted);
+    }
+
+    /* Pricing */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .pricing-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+    }
+
+    .pricing-card.featured {
+      border-color: var(--color-primary);
+      position: relative;
+    }
+
+    .pricing-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 4px 14px;
+      background: var(--color-primary);
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .pricing-tier {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--color-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 8px;
+    }
+
+    .pricing-price {
+      font-size: 2.5rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 4px;
+    }
+
+    .pricing-price span {
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--color-muted);
+    }
+
+    .pricing-desc {
+      font-size: 0.875rem;
+      color: var(--color-muted);
+      margin-bottom: 24px;
+    }
+
+    .pricing-features {
+      list-style: none;
+      margin-bottom: 28px;
+    }
+
+    .pricing-features li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.875rem;
+      padding: 6px 0;
+      color: var(--color-muted);
+    }
+
+    .pricing-features li::before {
+      content: '✓';
+      color: var(--color-primary-hover);
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    .pricing-cta { width: 100%; }
+
+    /* FAQ */
+    .faq-list {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--color-border);
+      padding: 20px 0;
+    }
+
+    .faq-question {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .faq-answer {
+      font-size: 0.9375rem;
+      color: var(--color-muted);
+      line-height: 1.7;
+    }
+
+    /* CTA Banner */
+    .cta-banner {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(34, 211, 238, 0.08));
+      border: 1px solid rgba(99, 102, 241, 0.25);
+      border-radius: 16px;
+      padding: 64px 40px;
+      text-align: center;
+    }
+
+    .cta-banner h2 {
+      font-size: clamp(1.75rem, 3vw, 2.25rem);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      margin-bottom: 16px;
+    }
+
+    .cta-banner p {
+      font-size: 1.0625rem;
+      color: var(--color-muted);
+      margin-bottom: 32px;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--color-border);
+      padding: 48px 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .footer-logo {
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .footer-tagline {
+      font-size: 0.875rem;
+      color: var(--color-muted);
+      margin-top: 4px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+
+    .footer-links a {
+      font-size: 0.875rem;
+      color: var(--color-muted);
+      transition: color 0.15s;
+    }
+
+    .footer-links a:hover { color: var(--color-text); }
+
+    .footer-copy {
+      font-size: 0.8125rem;
+      color: var(--color-muted);
+      width: 100%;
+      text-align: center;
+      margin-top: 24px;
+      padding-top: 24px;
+      border-top: 1px solid var(--color-border);
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .hero { padding: 80px 0 60px; }
+      .proof-bar-inner { gap: 32px; }
+      .cta-banner { padding: 48px 24px; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="container">
+      <div class="nav-inner">
+        <a href="/" class="nav-logo">Dispatch</a>
+        <ul class="nav-links">
+          <li><a href="#features">Features</a></li>
+          <li><a href="#how-it-works">How it works</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+        </ul>
+        <div style="display: flex; gap: 10px; align-items: center;">
+          <a href="/login" class="btn btn-outline">Log in</a>
+          <a href="/signup" class="btn btn-primary">Start free</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-eyebrow">Now in public beta</div>
+      <h1>Project management built for <span>freelancers, not enterprise teams</span></h1>
+      <p class="hero-sub">
+        Dispatch keeps your client work organized without the overhead.
+        Proposals, timelines, files, and invoices — all in one place.
+      </p>
+      <div class="hero-actions">
+        <a href="/signup" class="btn btn-primary btn-lg">Start building free</a>
+        <a href="#how-it-works" class="btn btn-outline btn-lg">See how it works</a>
+      </div>
+      <p class="hero-note">Free for up to 3 active projects. No credit card required.</p>
+    </div>
+  </section>
+
+  <!-- Social Proof Bar -->
+  <div class="proof-bar">
+    <div class="container">
+      <div class="proof-bar-inner">
+        <div class="proof-stat">
+          <div class="proof-stat-number">2,400+</div>
+          <div class="proof-stat-label">freelancers using Dispatch</div>
+        </div>
+        <div class="proof-stat">
+          <div class="proof-stat-number">18,000+</div>
+          <div class="proof-stat-label">projects shipped on time</div>
+        </div>
+        <div class="proof-stat">
+          <div class="proof-stat-number">$2.4M+</div>
+          <div class="proof-stat-label">invoiced through Dispatch</div>
+        </div>
+        <div class="proof-stat">
+          <div class="proof-stat-number">4.9 / 5</div>
+          <div class="proof-stat-label">average user rating</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Features -->
+  <section class="section" id="features">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">Features</div>
+        <h2>Everything you need to run client projects</h2>
+        <p>Built for how freelancers actually work — not adapted from enterprise tools that weren't made for you.</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">📋</div>
+          <h3>Proposals that close</h3>
+          <p>Send professional proposals in minutes. Clients sign and pay in the same flow — no PDFs back and forth.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📅</div>
+          <h3>Timelines your clients actually read</h3>
+          <p>Visual project timelines that update automatically as you hit milestones. Clients always know where things stand.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">💬</div>
+          <h3>Client communication in one thread</h3>
+          <p>No more chasing approvals across email, Slack, and text. One place for feedback, files, and sign-offs.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">💳</div>
+          <h3>Get paid faster</h3>
+          <p>Automated invoicing tied to milestones. Send reminders without the awkward follow-up email. Average payment: 3 days.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📁</div>
+          <h3>File delivery clients don't lose</h3>
+          <p>Deliver final files through Dispatch. Clients get a permanent link — not a Dropbox folder they'll forget the password to.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📊</div>
+          <h3>Know your numbers</h3>
+          <p>Revenue by client, project profit margins, average time to payment. The data you need to raise your rates with confidence.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="section" id="how-it-works" style="background: var(--color-surface);">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">How it works</div>
+        <h2>From new client to paid invoice in four steps</h2>
+        <p>Most freelancers are running their business in three different tools. Dispatch replaces all of them.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h3>Create a project</h3>
+            <p>Add your client's name, project scope, and timeline. Takes about 90 seconds.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h3>Send a proposal</h3>
+            <p>Generate a proposal from your project scope. Client signs and pays a deposit in one step.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h3>Work and collaborate</h3>
+            <p>Share updates, collect feedback, and get approvals — all in the project thread.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number">4</div>
+          <div class="step-content">
+            <h3>Deliver and invoice</h3>
+            <p>Send the final files and trigger the invoice. Dispatch handles the reminder if they don't pay on time.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">What freelancers say</div>
+        <h2>Built by freelancers, for freelancers</h2>
+        <p>We spent 6 months with 40 freelancers before writing a line of code. This is what they asked for.</p>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <p class="testimonial-quote">
+            "I used to chase every invoice for weeks. Since Dispatch, my average payment time dropped from 22 days to 4. That's real money I was just leaving on the table."
+          </p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar" aria-hidden="true"></div>
+            <div>
+              <div class="testimonial-name">Maya Osei</div>
+              <div class="testimonial-role">Brand designer, 8 years freelancing</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-quote">
+            "I have three clients who still use email for everything. Dispatch finally gave me a link I could send them that they'd actually use — and they did."
+          </p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar" aria-hidden="true"></div>
+            <div>
+              <div class="testimonial-name">Jordan Lee</div>
+              <div class="testimonial-role">Web developer, solo</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-quote">
+            "I was using Notion for projects, Stripe for payments, and Gmail for everything else. Dispatch cut my admin time by at least 40%. I'm billing 3 more hours a week just from that."
+          </p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar" aria-hidden="true"></div>
+            <div>
+              <div class="testimonial-name">Priya Sharma</div>
+              <div class="testimonial-role">Copywriter and content strategist</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section class="section" id="pricing" style="background: var(--color-surface);">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">Pricing</div>
+        <h2>Start free. Grow from there.</h2>
+        <p>No per-seat pricing, no percentage of your invoice. Flat rate, billed monthly or yearly.</p>
+      </div>
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <div class="pricing-tier">Free</div>
+          <div class="pricing-price">$0</div>
+          <div class="pricing-desc">Forever. Up to 3 active projects.</div>
+          <ul class="pricing-features">
+            <li>3 active projects</li>
+            <li>Proposals and contracts</li>
+            <li>Client portal</li>
+            <li>File delivery</li>
+            <li>Invoice reminders</li>
+          </ul>
+          <a href="/signup" class="btn btn-outline btn-lg pricing-cta">Start free</a>
+        </div>
+        <div class="pricing-card featured">
+          <div class="pricing-badge">Most popular</div>
+          <div class="pricing-tier">Pro</div>
+          <div class="pricing-price">$19 <span>/ month</span></div>
+          <div class="pricing-desc">Unlimited projects. Advanced reporting.</div>
+          <ul class="pricing-features">
+            <li>Unlimited active projects</li>
+            <li>Everything in Free</li>
+            <li>Revenue and margin reporting</li>
+            <li>Custom proposal branding</li>
+            <li>Priority support</li>
+            <li>Recurring project templates</li>
+          </ul>
+          <a href="/signup?plan=pro" class="btn btn-primary btn-lg pricing-cta">Start free trial</a>
+        </div>
+      </div>
+      <p style="text-align: center; margin-top: 24px; font-size: 0.875rem; color: var(--color-muted);">
+        Pro comes with a 14-day free trial. No credit card required to start.
+      </p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">FAQ</div>
+        <h2>Questions we actually get asked</h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-question">What happens when I have more than 3 active projects on the free plan?</div>
+          <div class="faq-answer">You can archive completed projects to stay under the limit, or upgrade to Pro for unlimited. We won't lock you out of your data either way.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">Does Dispatch take a percentage of my invoices?</div>
+          <div class="faq-answer">No. You pay a flat monthly fee. Your revenue is yours. Payment processing fees (if you use Stripe through Dispatch) are Stripe's standard rate — we don't add to it.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">Do my clients need to create an account?</div>
+          <div class="faq-answer">No. Clients get a link. They can view the project, leave feedback, sign contracts, and pay — all without signing up. We designed it this way because getting clients to create accounts kills adoption.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">Can I bring in projects I'm already working on?</div>
+          <div class="faq-answer">Yes. You can create projects for work that's already in progress. Import a past proposal, set a start date that's already passed, and add existing files and conversations.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">Is there a mobile app?</div>
+          <div class="faq-answer">Not yet. Dispatch is web-first and optimized for mobile browsers. A native app is on the roadmap — but we wanted to get the core workflow right first before building a second interface.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <section class="section">
+    <div class="container">
+      <div class="cta-banner">
+        <h2>Ready to stop managing your business in three different tools?</h2>
+        <p>Join 2,400 freelancers who ship projects on time and get paid faster. Start for free — no credit card needed.</p>
+        <a href="/signup" class="btn btn-primary btn-lg">Start building free</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <div class="footer-logo">Dispatch</div>
+          <div class="footer-tagline">Project management built for freelancers.</div>
+        </div>
+        <ul class="footer-links">
+          <li><a href="/features">Features</a></li>
+          <li><a href="/pricing">Pricing</a></li>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/changelog">Changelog</a></li>
+          <li><a href="mailto:hello@usedispatch.co">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-copy">
+        &copy; 2026 Dispatch. Built for freelancers who charge what they're worth.
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
+
+<!--
+  Mason Example — SaaS Landing Page
+
+  This is a real example of what Mason produces for a SaaS / Product site.
+
+  What Mason did to produce this:
+  1. mason-brand extracted: dark theme, Inter font, indigo/cyan palette, SaaS site type
+  2. mason-copy wrote: all headlines, subheadlines, feature descriptions, testimonials,
+     pricing copy, FAQ, and CTAs using PAS + benefit-first frameworks
+  3. mason-builder generated: complete HTML with semantic markup, responsive layout,
+     performance patterns (font preconnect, structured data, OG tags, CLS prevention)
+
+  Site: "Dispatch" — a fictional project management SaaS for freelancers.
+  Stack: Plain HTML/CSS (no framework).
+
+  To contribute an example: see examples/README.md
+-->

@@ -113,6 +113,54 @@ Spawn mason-deploy to handle the full flow. If the user wants to handle deployme
 
 ---
 
+## Context Handoff Format
+
+When passing context between agents, use this structured block so each specialist has everything it needs without re-reading the codebase:
+
+```
+## Handoff Context
+
+**Brand Profile:** [full output from mason-brand]
+
+**Build Plan:**
+- Site type: [SaaS / Service / Portfolio / E-commerce / Blog / Landing Page]
+- Pages to build: [list]
+- Sections per page: [list per page]
+- User-confirmed decisions: [any explicit choices the user made during planning]
+
+**Structured Copy:** [full output from mason-copy — include when passing to mason-builder]
+```
+
+Pass this block to mason-copy (without the Copy section) and to mason-builder (with the Copy section). This keeps every specialist in sync without requiring them to re-read the project.
+
+---
+
+## Multi-Page Sessions
+
+Building a full site (5+ pages) in a single session is possible but requires pacing. Follow this approach:
+
+**Do one page or section cluster at a time.** Finish `/` before starting `/about`. This gives the user a chance to course-correct before you've built everything the wrong way.
+
+**Maintain a page map.** At orientation, list all existing and planned pages. Update it as pages are completed:
+```
+Pages:
+- / (home)           ← done ✓
+- /about             ← done ✓
+- /pricing           ← in progress
+- /blog              ← not started
+- /blog/[slug]       ← not started
+```
+
+**Reference completed pages when building new ones.** Consistency comes from matching: use the same CTA pattern, the same testimonial format, the same footer across all pages.
+
+**If context gets large, summarize.** If you've built several pages and the conversation is long, open new sections with a brief status update so the user knows where you are:
+> "Completed: home, about. Working on: pricing. Still to go: blog index, blog post template."
+
+**Offer to ship between pages.** After completing each page, give the user the option to deploy what's done before continuing:
+> "Home and about are done. Want to ship these to Vercel now, or keep building and deploy everything at once?"
+
+---
+
 ## Cadence / Jarvis Mode
 
 You are in Cadence/Jarvis mode if any of these exist in the project:

@@ -52,6 +52,29 @@ Check for dark mode support:
 
 Record which type is in use (or `none`) — mason-builder needs this.
 
+## Competitive Positioning
+
+Read the README, any existing marketing copy, and `.claude/identity/` files for competitive signals. These help mason-copy write differentiation copy that doesn't sound generic.
+
+Look for:
+- **"Instead of X"** or **"unlike X"** language — explicit comparisons to named competitors
+- **"For [audience] who [frustrated with]"** — positioning against a problem category
+- **"Without [limitation]"** — leading with what the product doesn't have
+- **"Works with [existing tool]"** — integration-based positioning
+- Any named competitor mentions in README or copy
+
+If found, capture as:
+```
+### Competitive Positioning
+- Compared against: [named competitor or category]
+- Key differentiator: [what they lead with]
+- Positioning angle: [how they want to be seen vs. the alternative]
+```
+
+If nothing found, write `none detected` — do not invent competitive claims.
+
+---
+
 ## Stack Detection
 
 Identify the stack by looking for these signals:
@@ -131,6 +154,11 @@ Output the brand profile in this exact format. Be specific — no vague descript
 - Page/layout structure: [brief description of how pages are structured]
 - Component composition: [how components are built and composed]
 - Import patterns: [relative paths / absolute / aliased with @/]
+
+### Competitive Positioning
+- Compared against: [named competitor or category, or "none detected"]
+- Key differentiator: [what they lead with, or "unknown"]
+- Positioning angle: [how they want to be seen vs. the alternative, or "unknown"]
 ```
 
 ## Output
