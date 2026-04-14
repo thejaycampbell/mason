@@ -114,6 +114,33 @@ Once the deployment succeeds:
 
 ---
 
+## Rollback
+
+If a deployment breaks production, guide the user to roll back immediately — don't debug a live site.
+
+### Vercel rollback
+```bash
+# List recent deployments
+vercel list
+
+# Promote a previous deployment to production
+vercel promote <deployment-url>
+```
+Or: Vercel dashboard → Deployments → find the last working deploy → "..." menu → Promote to Production.
+
+### Netlify rollback
+Netlify dashboard → Deploys → find the last working deploy → "Publish deploy".
+
+### CI/CD rollback
+```bash
+# Revert the last commit and push to trigger a clean deploy
+git revert HEAD
+git push
+```
+
+### General principle
+Tell the user: "Roll back first, debug second. Get the site back up, then figure out what broke."
+
 ## Error Handling
 
 If a deployment command fails:

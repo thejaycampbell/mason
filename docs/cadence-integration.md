@@ -8,11 +8,20 @@ Mason is designed to slot directly into Cadence or Jarvis setups. When it detect
 
 Three commands. No conflicts — Mason uses the `mason-` prefix on everything.
 
+**macOS / Linux:**
 ```bash
 # From your Cadence/Jarvis root directory:
 cp -r path/to/mason/.claude/agents/* .claude/agents/
 cp -r path/to/mason/.claude/commands/* .claude/commands/
 cp -r path/to/mason/.claude/rules/* .claude/rules/
+```
+
+**Windows (PowerShell):**
+```powershell
+# From your Cadence/Jarvis root directory:
+Copy-Item -Recurse path\to\mason\.claude\agents\* .claude\agents\
+Copy-Item -Recurse path\to\mason\.claude\commands\* .claude\commands\
+Copy-Item -Recurse path\to\mason\.claude\rules\* .claude\rules\
 ```
 
 That's it. Open your project in Claude Code and Mason is available.

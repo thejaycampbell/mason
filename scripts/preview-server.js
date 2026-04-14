@@ -13,7 +13,12 @@ const fs = require('fs');
 const path = require('path');
 
 const PREVIEW_DIR = path.join(process.cwd(), '_preview');
-const PREFERRED_PORT = 4242;
+
+// Parse --port flag: node scripts/preview-server.js --port 3001
+const portArgIndex = process.argv.indexOf('--port');
+const PREFERRED_PORT = portArgIndex !== -1 && process.argv[portArgIndex + 1]
+  ? parseInt(process.argv[portArgIndex + 1], 10)
+  : 4242;
 
 const MIME_TYPES = {
   '.html': 'text/html',

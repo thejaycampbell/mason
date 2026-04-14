@@ -1,0 +1,31 @@
+{
+  "name": "mason",
+  "version": "0.2.0",
+  "description": "Website creation agent for Claude Code. Reads your codebase, writes your copy, generates your code, ships your site.",
+  "keywords": [
+    "claude-code",
+    "ai-agent",
+    "website-builder",
+    "code-generation",
+    "claude",
+    "anthropic",
+    "cadence",
+    "jarvis"
+  ],
+  "homepage": "https://github.com/thejaycampbell/mason",
+  "bugs": {
+    "url": "https://github.com/thejaycampbell/mason/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thejaycampbell/mason.git"
+  },
+  "license": "MIT",
+  "author": "Jay Campbell",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "preview": "node scripts/preview-server.js"
+  }
+}

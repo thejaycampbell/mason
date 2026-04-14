@@ -67,10 +67,18 @@ Mason takes it from there.
 
 Copy Mason's agent files into your project's `.claude/` directory:
 
+**macOS / Linux:**
 ```bash
 cp -r mason/.claude/agents/* your-project/.claude/agents/
 cp -r mason/.claude/commands/* your-project/.claude/commands/
 cp -r mason/.claude/rules/* your-project/.claude/rules/
+```
+
+**Windows (PowerShell):**
+```powershell
+Copy-Item -Recurse mason\.claude\agents\* your-project\.claude\agents\
+Copy-Item -Recurse mason\.claude\commands\* your-project\.claude\commands\
+Copy-Item -Recurse mason\.claude\rules\* your-project\.claude\rules\
 ```
 
 Open your project in Claude Code. Mason will detect your stack, read your existing components and copy, and build in what you already have.
@@ -90,6 +98,7 @@ Same as Option 2. If your project has `.claude/identity/`, `.claude/voice/`, or 
 | `/mason:build` | Start a build session — Mason orients, plans, and builds |
 | `/mason:preview` | Spin up a local preview server at `localhost:4242` |
 | `/mason:deploy` | Detect hosting config and deploy (or guide through setup) |
+| `/mason:audit` | Review an existing site for conversion, copy, and performance gaps |
 
 ---
 
@@ -162,6 +171,14 @@ Under the hood, five specialized agents work in sequence:
 - [ ] `mason-seo` agent — technical SEO audit + fixes post-build
 
 ---
+
+## Social Preview
+
+To set a custom social preview image for this repo (shown when shared on Twitter/LinkedIn), go to **Settings → Social Preview** in the GitHub repo and upload an image. Recommended size: 1280×640px.
+
+## Discussions
+
+Questions and ideas live in [GitHub Discussions](https://github.com/thejaycampbell/mason/discussions). Use Issues for bugs and feature requests only.
 
 ## Contributing
 

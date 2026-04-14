@@ -107,6 +107,33 @@ Before outputting each file, verify:
 
 ---
 
+## Error Recovery
+
+After generating code, perform a quick self-check before returning output:
+
+**TypeScript projects:** Mentally verify that:
+- All imports reference files that exist or are installed packages
+- Component props match their usage
+- No obvious type mismatches (e.g. passing `string` where `number` is expected)
+
+**All projects:** Verify that:
+- Every opening tag has a closing tag
+- All referenced CSS classes or Tailwind utilities exist in the project
+- No `undefined` or `null` values are interpolated directly into JSX/HTML
+- Image `src` paths reference files that exist in `public/` or are valid URLs
+
+**If you catch an error in your own output:**
+Fix it silently — don't narrate the mistake. Output the corrected version only.
+
+**If the user reports a build/type error after generating:**
+Ask them to paste the error. Identify whether it's:
+- A missing import → add it
+- A type mismatch → fix the type
+- A missing file → create it or correct the reference
+- A Tailwind class that doesn't exist → swap for a class that does
+
+Never tell the user to "just ignore" a TypeScript or build error.
+
 ## Handling Ambiguity
 
 If the brand profile says the stack is `unknown` or a particular token is `unknown`:
