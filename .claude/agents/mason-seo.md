@@ -97,6 +97,63 @@ Sitemap: https://yourdomain.com/sitemap.xml
 - Are new pages linked from other pages in the site? An orphan page (no internal links pointing to it) is hard for crawlers to find.
 - Are anchor texts descriptive ("see our pricing" vs "click here")?
 
+### Answer Engine Optimization (AEO)
+
+Technical SEO gets you indexed. AEO gets you cited in AI answers. They're related but different.
+
+AI-referred visitors convert at 5x the rate of organic search. The mechanism: they arrive after completing research in ChatGPT, Perplexity, or Claude — they're verifying, not discovering. Getting cited requires that models can extract and trust your content.
+
+**FAQPage schema — flag if missing on any page with a FAQ section.**
+This is the single highest-leverage AEO action. AI engines parse Q&A structure and FAQ schema makes it unambiguous.
+
+```html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "[Question text exactly as written in the FAQ]",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "[Full answer text — complete sentence, no HTML tags]"
+      }
+    }
+  ]
+}
+</script>
+```
+
+**Claim specificity — check for vague claims that won't get cited:**
+- Flag: "powerful," "easy," "fast," "seamless," "best-in-class," "leading"
+- These are not citable. AI models extract specific, verifiable claims.
+- Recommend replacing with: numbers, timeframes, specific outcomes ("deploys in 60 seconds," "paid in 4 days on average," "3,200 teams using it")
+
+**Positioning statement — check for a clear, extractable one-sentence description:**
+Does the page have a sentence an AI could use to describe the product? Usually in the hero or about section. It should name: what it is, who it's for, and the primary outcome.
+- Not extractable: "A new way to work"
+- Extractable: "Dispatch is project management software for freelancers — proposals, invoicing, and client communication in one tool"
+
+**Comparison / differentiation content — flag if absent:**
+AI-referred visitors are often mid-comparison. If there's no content explicitly addressing "how does this differ from X," they can't verify the differentiation claim they heard about. Flag missing differentiation sections as High priority for B2B SaaS and Service sites.
+
+**BreadcrumbList schema — for multi-page sites:**
+Helps AI understand site structure and page relationships.
+
+```html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://yourdomain.com/"},
+    {"@type": "ListItem", "position": 2, "name": "Pricing", "item": "https://yourdomain.com/pricing"}
+  ]
+}
+</script>
+```
+
 ---
 
 ## Output Format

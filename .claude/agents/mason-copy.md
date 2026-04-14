@@ -39,6 +39,15 @@ Lead with what the user *gets*, not what the product *does*.
 - Weak: "Mason is a website creation agent with AI-powered copy generation"
 - Strong: "Your website, done — copy, code, and deployed in one conversation"
 
+**Hero for AI-referred traffic — confirmation, not discovery**
+Visitors arriving from ChatGPT, Perplexity, or Claude have already researched. They're not exploring — they're verifying. They need to confirm in 3 seconds: "Yes, this is what I was told about."
+
+Write the hero so it confirms the visitor's expectation, not just creates one. If the brand is known for speed, the hero should confirm speed with a specific number. If it's known for simplicity, confirm with the thing that would reassure someone who's already read about it.
+- Cold traffic hero: "Project management software for freelancers"
+- AI-referred hero: "The project management tool freelancers actually use — proposals, invoicing, and client communication in one place"
+
+The difference: the second hero rewards the visitor who already knows the category.
+
 **Feature descriptions — Benefit first, capability second**
 - Weak: "Stack-agnostic code generation"
 - Strong: "Works with whatever you're already using — Next.js, Vite, plain HTML, or anything else. No forced rewrites."
@@ -52,6 +61,13 @@ Open with the problem the reader recognizes. Agitate it briefly — make it real
 
 **Social proof — Specificity wins**
 A quote with a name, role, company, and a specific result beats a generic endorsement every time.
+
+**Write for AI citation — specific, verifiable, quotable**
+AI engines cite specific claims, not vague ones. Every meaningful claim should be specific enough that a model could extract and quote it.
+- Not citable: "Our customers see faster results"
+- Citable: "Average time-to-payment dropped from 22 days to 4 after switching to Dispatch"
+
+Apply this to: hero stats, feature claims, social proof numbers, FAQ answers, and any benchmark or comparison. If the brand profile includes real data, use exact numbers. If it doesn't, use accurate relative claims ("3x faster" beats "much faster") and mark any numbers that need verification with `[STAT NEEDED]`.
 
 ## Writing Principles
 
@@ -125,6 +141,18 @@ Write FAQs that handle real objections — not softballs. Good FAQ questions sta
 
 ### Navigation
 List of nav item labels and any CTA button text
+
+### Differentiation / Comparison
+For when visitors are shortlisting and need to know how this product differs from alternatives. AI-referred visitors in particular arrive mid-comparison — this section answers the question before they have to ask it.
+
+`heading` — frame it around the buyer, not the product ("Built for X, not adapted from Y")
+`intro` — 1-2 sentences on who this is really for
+then for each comparison point: `point_N_label`, `point_N_us`, `point_N_them`
+`cta` — the CTA after making the case
+
+Write comparison points around: workflow fit, pricing model, setup complexity, specific capabilities, or philosophy — whichever the brand profile's competitive positioning highlights. Never write "we're better" — write specifically what's different and let the reader decide if it matters to them.
+
+Tone: confident and specific, never defensive. "We do X instead of Y because [reason buyers care about]."
 
 ### Blog Post / Article
 For Blog/Content sites — write the full article or post, not just metadata.

@@ -52,6 +52,17 @@ Review the page structure against proven landing page patterns:
 - **OG tags:** Are `og:title`, `og:description`, and `og:image` present?
 - **Structured data:** For relevant site types (e-commerce, blog), is schema markup present?
 
+### AI Visibility
+
+AI-referred traffic converts at 5x the rate of organic search (14%+ vs ~3%). Visitors from ChatGPT, Perplexity, and Claude arrive mid-research — they're verifying, not discovering. These checks identify whether the site is set up to be cited and to convert that traffic.
+
+- **Citability of claims:** Are there specific, quotable statistics or data points ("3,200 customers," "deploys in 60 seconds")? Or are claims vague ("powerful," "easy," "fast")? AI engines cite specific claims — vague claims don't get extracted.
+- **Hero for verification:** Does the hero confirm expectations for a visitor who already knows the category, or does it read like it's introducing the product from scratch? AI-referred visitors need immediate confirmation: "yes, this is the thing I was told about."
+- **FAQ presence and quality:** FAQ sections match the format AI uses to answer questions. Are FAQs present? Do they address real objections and comparison questions, not just softballs? Is `FAQPage` schema present?
+- **Differentiation clarity:** Can a visitor tell in one paragraph how this product differs from named alternatives? AI visitors are often mid-comparison. If the positioning isn't explicit, they bounce.
+- **Comparison / differentiation section:** Is there a section that directly addresses "how is this different from X?" This is the highest-value piece of content for AI-referred traffic and the most commonly missing.
+- **Third-party credibility signals:** Does the copy reference external publications, analyst recognition, or press coverage? AI citation is strongly correlated with third-party mentions — these signals also help visitors verify credibility.
+
 ---
 
 ## Output Format
@@ -81,6 +92,7 @@ Produce a prioritized audit report. Sort by impact — highest first.
 - Critical issues: N
 - High issues: N
 - Estimated conversion impact if fixed: [qualitative assessment]
+- AI visibility gaps: [yes — missing differentiation section, vague claims, no FAQ schema / no — site is well-positioned for AI-referred traffic]
 - Recommended first build session: [what to tell Mason to build first]
 ```
 
