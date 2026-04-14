@@ -30,6 +30,12 @@ Read the project silently:
 - Existing components — naming conventions, file structure, composition patterns
 - Existing page or layout files — structural patterns
 - Any existing marketing copy, headings, or body text — tone, voice, vocabulary
+- `public/` — logos, images, icons already available
+- `app/` or `pages/` directory — **map every existing route** so you know what pages exist and what's missing
+
+**Route mapping:** List the existing pages (e.g. `/`, `/about`, `/pricing`). This prevents you from suggesting something half-built, and helps you identify obvious gaps.
+
+**Site type classification:** Based on the README, existing routes, copy, and package.json — classify the site as one of: SaaS/Product, Service/Agency, Portfolio/Personal, E-commerce, Blog/Content, or Landing Page. This determines the default section structure mason-copy will use.
 
 **Cadence/Jarvis detection:** Check for `.claude/identity/`, `.claude/voice/`, `.claude/goals/`, `.claude/memory/`. If any exist, you are in Cadence/Jarvis mode — read all context files before proceeding.
 
@@ -64,7 +70,7 @@ Pass: the approved build plan, the project directory context.
 Receive: a structured brand profile.
 
 **Step 2 — Spawn mason-copy**
-Pass: the brand profile + approved build plan.
+Pass: the brand profile + approved build plan + **site type classification**.
 Receive: structured copy output (every text element, section by section).
 
 **Step 3 — Spawn mason-builder**

@@ -25,7 +25,13 @@ Use the colors, fonts, and spacing values from the brand profile. Reference CSS 
 Every file ships with real content. No "Lorem ipsum", no "TODO: add copy here", no empty `alt=""` attributes.
 
 **Reuse existing components.**
-The brand profile lists key existing components. Use them instead of building from scratch wherever they fit.
+The brand profile lists key existing components and installed component libraries. Use shadcn/ui, Radix, or other installed components before building from scratch. If a `<Button>` exists in `components/ui/`, import it — don't write a new one.
+
+**Respect dark mode.**
+If the brand profile shows dark mode is active, every component you generate must include dark mode variants. For Tailwind: add `dark:` classes alongside light classes. For CSS: add `@media (prefers-color-scheme: dark)` blocks or respect the `dark` class on `<html>`. Never generate components that break in dark mode on a project that uses it.
+
+**Use existing assets.**
+The brand profile lists what's in `public/`. If a logo exists at `public/logo.svg`, use `<img src="/logo.svg">` or `<Image src="/logo.svg">` — don't use a text placeholder.
 
 ---
 
@@ -60,6 +66,31 @@ For each file include a brief note:
 - **New dependencies:** [list any, ideally "none"]
 
 ---
+
+## Performance Patterns
+
+Apply these automatically based on detected stack — don't wait to be asked:
+
+### Next.js
+- **Images:** Always use `next/image` (`<Image>`) instead of `<img>`. Set explicit `width` and `height` or use `fill` with a sized container. Add `priority` to above-the-fold images.
+- **Fonts:** Use `next/font` to load fonts. Never load from Google Fonts via a `<link>` tag in Next.js — it bypasses optimization.
+- **Links:** Use `next/link` for all internal navigation.
+- **Lazy loading:** Components below the fold can use `dynamic(() => import(...), { loading: () => <Skeleton /> })`.
+
+### Plain HTML
+- **Images:** Add `loading="lazy"` to all images below the fold. Add `loading="eager"` to the hero image.
+- **Fonts:** Add `<link rel="preconnect" href="https://fonts.googleapis.com">` before the font stylesheet. Add `font-display: swap` to `@font-face` rules.
+- **Scripts:** Add `defer` or `async` to non-critical scripts.
+
+### Vite / React
+- **Images:** Import images as modules or reference from `public/`. Use `loading="lazy"` below the fold.
+- **Code splitting:** Use `React.lazy` + `Suspense` for route-level components.
+- **Fonts:** Preconnect to font providers in `index.html`.
+
+### Universal
+- Every `<img>` has explicit `width` and `height` attributes to prevent layout shift (CLS).
+- Decorative images get `alt=""`. Meaningful images get descriptive alt text from mason-copy.
+- Avoid inline styles — use classes from the detected CSS system.
 
 ## Code Quality Checklist
 

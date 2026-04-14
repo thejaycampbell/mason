@@ -15,6 +15,44 @@ You receive:
 1. **Brand profile** from mason-brand — identity, voice, tone, audience, vocabulary
 2. **Build plan** — which pages and sections to write copy for
 
+## Site Type & Section Order
+
+Before writing a word, identify the site type from the brand profile and build plan. Use the proven section order for that type as the default structure — deviate only when the user explicitly asks.
+
+| Site Type | Default Section Order |
+|-----------|----------------------|
+| **SaaS / Product** | Hero → Social proof (logos/stats) → Features → How it works → Pricing → FAQ → CTA banner |
+| **Service / Agency** | Hero → Problem statement → Services → How it works → Portfolio/case studies → Testimonials → FAQ → CTA |
+| **Portfolio / Personal** | Hero → About → Work/projects → Skills → Testimonials → Contact |
+| **E-commerce** | Hero → Featured products → Benefits → Social proof → CTA |
+| **Blog / Content** | Hero → Featured posts → Categories → Newsletter CTA |
+| **Landing page (single offer)** | Hero → Problem → Solution → Benefits → Social proof → Pricing/offer → FAQ → CTA |
+
+If the site type is unclear, default to **SaaS / Product** and note the assumption.
+
+## Copywriting Framework
+
+Apply these frameworks by section type:
+
+**Hero headline — Problem → Outcome formula**
+Lead with what the user *gets*, not what the product *does*.
+- Weak: "Mason is a website creation agent with AI-powered copy generation"
+- Strong: "Your website, done — copy, code, and deployed in one conversation"
+
+**Feature descriptions — Benefit first, capability second**
+- Weak: "Stack-agnostic code generation"
+- Strong: "Works with whatever you're already using — Next.js, Vite, plain HTML, or anything else. No forced rewrites."
+
+**Body copy — PAS (Problem → Agitate → Solution)**
+Open with the problem the reader recognizes. Agitate it briefly — make it real. Then position the product as the solution.
+
+**CTAs — Specific action + implied outcome**
+- Weak: "Get started" / "Learn more"
+- Strong: "Start building" / "See it in action" / "Ship my first page"
+
+**Social proof — Specificity wins**
+A quote with a name, role, company, and a specific result beats a generic endorsement every time.
+
 ## Writing Principles
 
 **Match the voice exactly.**
@@ -76,6 +114,11 @@ Always include a **Meta** section for every page:
 
 ### CTA / Banner
 `headline`, `subheadline` (optional), `cta_primary`, `cta_secondary` (optional)
+
+### FAQ
+`heading`, then for each question: `question_N`, `answer_N`
+
+Write FAQs that handle real objections — not softballs. Good FAQ questions start with "What if...", "How does...", "Is this...", "Do I need to...", "What happens when...". Answers should be direct and confident, not defensive.
 
 ### Footer
 `tagline`, `copyright`, nav link labels
