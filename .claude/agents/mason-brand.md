@@ -107,6 +107,8 @@ Output the brand profile in this exact format. Be specific — no vague descript
 - Name: [project/brand name — from package.json name field, README h1, or existing copy]
 - Description: [one sentence — what this is and who it's for]
 - Tagline: [if found in existing copy or identity files]
+- ICP (ideal customer profile): [the specific buyer — be as narrow as the copy supports. Not "small businesses" but "two-person design studios" or "solo developers shipping SaaS products." The more specific this is, the more likely AI will recommend this brand to that exact buyer type instead of listing it as one of several options.]
+- Positioning statement: [one sentence: what + who + primary outcome — the sentence AI would use to describe this brand. Extract from About page, hero subheadline, or meta description. If absent, note it as missing — mason-copy needs to write one.]
 
 ### Colors
 - Primary: [hex value or CSS variable name]

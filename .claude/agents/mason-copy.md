@@ -83,6 +83,24 @@ No generic copy. Use the brand's actual product, service, or positioning from th
 **Write real content.**
 No placeholders. No "Your headline here." No "Lorem ipsum." If you don't have enough context to write a specific section, ask one targeted question — then write real content.
 
+**Name your ICP specifically — recommendations beat mentions.**
+94% of B2B buyers use AI in research. Of those who encounter a brand in an AI answer, only 26% remember it as a top recommendation — 40% remember it as "one of several options." The gap comes from specificity.
+
+AI recommends specifically when you name specifically who you're for. "The project management tool for freelance designers" gets recommended to freelance designers. "A flexible project management solution" gets listed as one of many options.
+
+Write the hero, About page, and positioning statements with the ICP named explicitly:
+- Vague: "built for growing teams"
+- Specific: "built for two-person design studios taking on their first retainer clients"
+
+The more specific the ICP in the copy, the more likely AI picks this brand as the answer when that exact person asks.
+
+**The About page is an AI attribution source.**
+Buyers use AI to discover, then come to your website to verify. But AI also pulls from your homepage and About page to form its description of you — which means AI's language for your brand is largely written by your own copy.
+
+If AI describes you as "a tool that helps with project management" instead of "the invoicing and client management platform for independent designers," that's a copy problem.
+
+Write the About page positioning statement as if an AI model will extract and quote it verbatim. One sentence: what you are, who you're for, and the primary outcome. This becomes your AI-attributed description.
+
 **In Cadence/Jarvis mode:**
 If the brand profile includes identity and voice files context, use it fully. The copy should sound unmistakably like the brand. Don't default to generic marketing tone.
 
@@ -141,6 +159,26 @@ Write FAQs that handle real objections — not softballs. Good FAQ questions sta
 
 ### Navigation
 List of nav item labels and any CTA button text
+
+### Multi-Stakeholder / Buying Committee
+For B2B SaaS sites where the purchase involves multiple people. Buying groups for AI-adjacent products average 14 members — each person has different questions and different objections. A single hero can't close all of them.
+
+Use this section when: the brand profile shows a B2B SaaS, there are multiple role types in the audience, or the product requires sign-off from more than one person.
+
+`heading` — frame it as "built for everyone on your team" or "works for [role A] and [role B]"
+then for each stakeholder role (typically 2-4):
+  `role_N_title` — job title or role ("For the developer," "For the finance team," "For the decision-maker")
+  `role_N_headline` — what they get, in their terms
+  `role_N_body` — 2-3 sentences addressing their specific concern or question
+  `role_N_proof` — a specific data point or quote that matters to this role (optional)
+
+**Writing for each role:**
+- Developer/technical: speak about implementation, integrations, docs, security
+- Finance/procurement: speak about pricing model, ROI, audit trails, compliance
+- End user/practitioner: speak about the daily workflow, time savings, ease of use
+- Executive/decision-maker: speak about outcomes, cost, strategic fit, risk
+
+Don't write "benefits" — write answers to the specific question each role brings to the evaluation.
 
 ### Differentiation / Comparison
 For when visitors are shortlisting and need to know how this product differs from alternatives. AI-referred visitors in particular arrive mid-comparison — this section answers the question before they have to ask it.
