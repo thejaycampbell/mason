@@ -192,6 +192,45 @@ Write comparison points around: workflow fit, pricing model, setup complexity, s
 
 Tone: confident and specific, never defensive. "We do X instead of Y because [reason buyers care about]."
 
+### Press & Media Page
+AI citation is driven primarily by third-party media coverage — brands in the top citation tier average 25% AI visibility vs. 7.6% for everyone else. A press page removes friction for journalists and makes it easy for publications (which AI trusts) to write about the brand accurately.
+
+This page is worth building for any B2B SaaS, service, or product company. It directly feeds the earned media pipeline that drives AI citation.
+
+`page_heading` — "Press & Media" or "In the press" or "[Brand] for journalists"
+`page_intro` — 2-3 sentences: who we are, what we do, who we serve. Written for a journalist who has 30 seconds. This paragraph will be extracted by AI and publications as the brand's canonical description — it must be specific.
+`company_boilerplate` — one paragraph, 75-100 words, describing the company for press usage. Written in third person. This is what journalists paste into articles and what AI models quote when describing the brand.
+`founding_year`, `location`, `employee_count` (or range), `funding_status` (if public)
+`key_stats` — 3-5 specific, citable data points (users, revenue milestone, growth rate, accuracy, time saved — whatever the brand owns). These are the numbers journalists cite and AI extracts.
+`founder_quote` — a quote attributed to the founder or CEO about the company's mission or a strong point of view. Should be specific and quotable, not generic.
+`coverage_heading` — heading for a "featured in" or "as seen in" section (if press coverage exists)
+`press_contact` — name and email for press inquiries
+`assets_note` — "Download logo and brand assets" (link to an assets ZIP or Google Drive)
+
+**Writing the boilerplate and key stats:**
+The company boilerplate is the single most important piece of copy on this page — it becomes the source text for how journalists, analysts, and AI systems describe the brand. Write it to be quoted verbatim. Specific, factual, jargon-free.
+- Weak: "A leading platform for modern teams looking to streamline their workflows"
+- Strong: "Dispatch is project management software for independent designers and freelancers — it combines proposals, client communication, file delivery, and invoicing in one tool. Used by 2,400 freelancers across 40 countries."
+
+### Linkable Asset / Research Page
+Third-party publications that AI engines trust need original data and strong perspectives to cite. A linkable asset is a page designed to earn citations from external sources — the kind of content that makes publications reference you by name.
+
+Types of linkable assets Mason can build:
+- **State of [Category] report**: Original survey data or analysis. "State of Freelance Project Management 2026" — a page with key findings, charts (as styled HTML), and a download link.
+- **Category benchmark page**: "How fast should invoices be paid? Data from 2,400 freelancers." A specific question answered with data.
+- **Tools & resources list**: A curated, maintained list of tools in your category. Other sites link to these because they don't want to maintain them themselves.
+- **Calculator or estimator**: An interactive tool (or a table-based approximation) that practitioners reference repeatedly.
+- **Contrarian take / perspective page**: A well-argued position that challenges category assumptions. These get picked up by publications that cover your space.
+
+`page_title` — specific, keyword-rich, citation-worthy title
+`page_intro` — what this is and why it's worth reading; include the data source and recency
+`key_findings` — 3-7 numbered findings, each a specific, quotable claim with a number
+`methodology_note` — brief: sample size, date range, how data was collected (even informal surveys)
+`cta_download` — if there's a downloadable version: "Download the full report"
+`cta_embed` — if others can embed or cite: "Cite this data: [canonical URL]"
+
+**The goal:** write something a journalist covering your category would quote in an article. Every sentence should pass the test: "Would a writer cite this in a story about [category]?"
+
 ### Blog Post / Article
 For Blog/Content sites — write the full article or post, not just metadata.
 
