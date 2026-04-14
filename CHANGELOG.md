@@ -10,6 +10,60 @@ Format: [Semantic Versioning](https://semver.org). Types: `Added`, `Changed`, `F
 
 ---
 
+## [0.3.0] — 2026-04-14
+
+### Added
+
+**New agent: `mason-brief`**
+- Intake interview specialist for blank projects — no existing codebase required
+- 5-7 structured questions asked one at a time (not a form dump)
+- Outputs a synthetic brand profile in the exact same schema as mason-brand — downstream agents can't tell the difference
+- Covers: product identity + ICP, site type, competitive positioning, color direction, stack choice, asset availability, primary conversion goal
+- Skips questions already answered by the user's first message (reads context before asking)
+- Case 2 mode: fills only `[NEEDS BRIEF]` gaps in an incomplete brand profile
+
+**New commands: `/mason:brief` and `/mason:revise`**
+- `/mason:brief` — explicit entry point for new projects; invokes mason-brief before building
+- `/mason:revise` — targeted post-build revision; activates Revision Mode in the orchestrator (copy only / code only / both / new section). Does not re-run the full pipeline for single-section changes.
+
+**Agent improvements**
+
+`mason.md` orchestrator:
+- Blank Project Detection (Step 0) — checks for existing components, markup files, and README before orienting; routes to mason-brief on blank projects
+- Profile Validation step (between mason-brand and mason-copy) — scans for `[NEEDS BRIEF]` sentinels and resolves them before proceeding
+- Revision Mode section — scope classification, targeted specialist dispatch, `Revision scope:` handoff field
+
+`mason-brand.md`:
+- Required Fields Contract table — defines required vs. optional fields and fallback behavior
+- `[NEEDS BRIEF]` sentinel — required fields that can't be inferred get this marker instead of "unknown"; orchestrator catches and resolves
+- `Asset status` field in Existing Assets — `present` or `minimal — builder will use fallbacks`
+
+`mason-copy.md`:
+- Missing Field Protocol — scans for `[NEEDS BRIEF]` in received brand profile; asks one targeted question per gap; never passes `[NEEDS BRIEF]` downstream
+- Copy Mode Declaration — `Conversion` / `Citation / AEO` / `Hybrid` per page; resolves the zero-click vs. conversion contradiction
+- Copy Length Standards table — word count targets for every section type (hero: 15-25 word subheadline, FAQ: 40-80 words, etc.)
+- FAQ Objection Framework — objection categories by site type (SaaS, Service, Portfolio) with answer structure (direct answer first sentence)
+
+`mason-builder.md`:
+- Conversion Architecture section — above-the-fold checklist, CTA placement rules (3× minimum), trust signal placement pattern, social proof specificity rule (all four fields required), form friction rules
+- Asset Fallback section — CSS wordmark, gradient hero, SVG letter favicon, designed mockup frames; triggered when `Asset status: minimal`
+
+**New example: `examples/vite-react-agency/`**
+- Complete Vite + React agency site (Forma — brand and web design studio)
+- Service/Agency section order (Problem → Services → How It Works → Portfolio → Testimonials → FAQ → CTA)
+- Demonstrates all three asset fallbacks: gradient hero, CSS wordmark, mockup frames for portfolio items
+- Vite patterns: `React.lazy` + `Suspense` code splitting, `loading="lazy"` on images, preconnect in `index.html`
+- FAQPage schema co-located with component data
+- CSS wordmark in Header (no logo asset), SVG letter favicon in `index.html`
+
+**CI update: `.github/workflows/validate.yml`**
+- Updated to check for mason-brief.md in the required agents list
+
+### Changed
+- `README.md` — added mason-brief and /mason:revise to commands table; updated project structure tree and agent list
+
+---
+
 ## [0.2.0] — 2026-04-14
 
 ### Added

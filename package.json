@@ -1,6 +1,6 @@
 {
   "name": "mason",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Website creation agent for Claude Code. Reads your codebase, writes your copy, generates your code, ships your site.",
   "keywords": [
     "claude-code",

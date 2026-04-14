@@ -95,6 +95,141 @@ Mark optional props with `?`. Use union types for variants (`variant?: 'default'
 
 ---
 
+## Conversion Architecture
+
+Run this checklist **before generating the Hero component**. These are the patterns that separate a site that looks good from one that converts. They are not optional.
+
+### Above-the-Fold Checklist
+
+Verify the Hero component satisfies all of these at a 1280px viewport:
+
+- [ ] **Primary CTA is visible without scrolling.** If the CTA sits below a large hero image or a long headline, reduce the hero height or move the CTA up.
+- [ ] **`<h1>` is the first heading on the page.** Front-load the primary keyword. No decorative subheading appearing before it.
+- [ ] **One primary CTA, one optional secondary — never three.** Three CTAs is no CTA. If the design calls for a third action, it belongs in a later section.
+- [ ] **Social proof signal within 200px below the primary CTA.** Logo bar, user count stat, or testimonial pull-quote. This is the pattern that converts browsers. Don't put it halfway down the page.
+- [ ] **Hero image or visual uses `priority` / `loading="eager"`.** It is always the LCP element. Lazy-loading the hero image destroys performance scores.
+- [ ] **Trust anchor is present in the hero.** One of: a specific number ("3,200 customers"), a recognizable logo, or a friction-reducer line ("No credit card required"). If none of these appear, the visitor has no reason to believe the headline.
+
+### CTA Placement Rules
+
+- **Primary CTA appears minimum 3× per page:** once in the hero, once mid-page (after Features or Testimonials), once in the bottom CTA banner.
+- **Secondary CTA appears only in the hero** — do not repeat it at the bottom. The bottom is for the primary action only.
+- **Every Features or Testimonials section ends with or contains a CTA link.** Not a full button — a text link is fine ("See all features →"). Sections without any exit action are dead ends.
+
+### Trust Signal Placement Pattern
+
+Use this sequence — deviating from it requires a deliberate reason:
+
+1. **Below hero:** logo bar or stat row. Not testimonials yet. Logos and numbers are fast to scan; testimonials require reading.
+2. **Before pricing:** a testimonial or case study result. Reduce purchase anxiety immediately before the price appears.
+3. **After pricing:** objection-handling micro-copy. One line: "No credit card required" / "Cancel anytime" / "Setup in under 5 minutes." Placed directly below the pricing CTA button.
+
+### Social Proof Specificity Rule
+
+Every testimonial component must include **all four fields**: quote, author name, author role, author company. A result stat is strongly preferred.
+
+```typescript
+interface Testimonial {
+  quote: string        // required — 25-50 words
+  name: string         // required — "Sarah Kim", not "S.K."
+  role: string         // required — "Brand Designer"
+  company: string      // required — "Freelance / Self"
+  result?: string      // preferred — "Saves 6 hours/week"
+}
+```
+
+Never generate a testimonial component that renders quote-only. The attribution is what makes social proof credible.
+
+### Form Friction Rules
+
+- **Above-fold email capture:** one field — email only. Asking for name in the first touchpoint reduces conversion.
+- **Contact and inquiry forms:** 3 fields maximum (name, email, message). Every additional field reduces form completion rate.
+- **Never ask for a phone number** unless it is explicitly required by the build plan and the user confirmed it.
+
+---
+
+## Asset Fallbacks
+
+When `brand profile → Asset status: minimal` or `Logo: none found`, use these designed fallbacks — never generate broken `<img>` tags or empty image placeholders.
+
+### Logo fallback — CSS wordmark
+
+```tsx
+// Replace <img src="/logo.svg"> with this when no logo asset exists
+<span
+  className="font-bold text-xl tracking-tight"
+  style={{ color: 'var(--color-primary, #6366f1)' }}
+>
+  {brandName}
+</span>
+```
+
+Plain HTML equivalent:
+```html
+<span style="font-weight: 700; font-size: 1.25rem; letter-spacing: -0.025em; color: var(--color-primary, #6366f1);">
+  BrandName
+</span>
+```
+
+### Hero fallback — gradient background
+
+When no hero image exists in `public/`, replace the `<img>` or `<Image>` with a CSS gradient using brand colors:
+
+**Dark theme (default):**
+```tsx
+<div
+  aria-hidden="true"
+  className="pointer-events-none absolute inset-0 -z-10"
+  style={{
+    background: 'radial-gradient(ellipse 80% 50% at 50% 0%, var(--color-primary, #6366f1)33, transparent 70%)',
+  }}
+/>
+```
+
+**Light theme:**
+```tsx
+<div
+  aria-hidden="true"
+  className="pointer-events-none absolute inset-0 -z-10"
+  style={{
+    background: 'linear-gradient(180deg, var(--color-primary, #6366f1)0d 0%, transparent 100%)',
+  }}
+/>
+```
+
+The gradient uses the brand primary color at low opacity — it looks intentional, not like a missing image.
+
+### Favicon fallback — SVG letter
+
+When `Favicon: none found` in the brand profile, generate a data URI favicon from the first letter of the brand name:
+
+```html
+<!-- In <head> — uses brand primary color -->
+<link
+  rel="icon"
+  href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%236366f1'/><text x='50' y='72' font-family='system-ui' font-weight='700' font-size='60' text-anchor='middle' fill='white'>B</text></svg>"
+/>
+```
+
+Replace `B` with the brand's first letter. Replace `%236366f1` with the URL-encoded brand primary color.
+
+### Product screenshot fallback — designed mockup frame
+
+When a section calls for a product screenshot or demo image and none exists:
+
+```tsx
+<div className="relative aspect-video w-full overflow-hidden rounded-xl border border-zinc-200 dark:border-zinc-800 bg-gradient-to-br from-zinc-100 to-zinc-200 dark:from-zinc-800 dark:to-zinc-900">
+  <div className="absolute inset-0 flex items-center justify-center">
+    <span className="text-sm text-zinc-400 dark:text-zinc-600">Product screenshot</span>
+  </div>
+  {/* TODO: replace with actual screenshot — e.g. <Image src="/screenshot.png" fill alt="[Product name] interface" /> */}
+</div>
+```
+
+This is an intentional, styled placeholder. It preserves the layout, maintains correct aspect ratio, and leaves a clear TODO comment for the developer to replace it. Do not use a stock photo URL.
+
+---
+
 ## Interactivity
 
 **Never leave interactive elements as static HTML.**

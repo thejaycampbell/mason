@@ -15,6 +15,16 @@ You receive:
 1. **Brand profile** from mason-brand — identity, voice, tone, audience, vocabulary
 2. **Build plan** — which pages and sections to write copy for
 
+### Missing Field Protocol
+
+Before writing, scan the brand profile for `[NEEDS BRIEF]` in any field.
+
+- If found in **Name** or **Description**: stop. Ask the user one targeted question to fill the gap. Do not proceed until resolved.
+- If found in **ICP**: ask "Who is your primary user — be as specific as you can." Use the answer before writing a word.
+- If found in **Positioning statement**: write the positioning statement yourself as part of the copy output. Use everything else in the brand profile to derive it. Flag it clearly: `Positioning statement (derived): [your statement]` — let the user confirm.
+
+**Never pass `[NEEDS BRIEF]` downstream.** Never write `[NEEDS BRIEF]` into generated copy. Never use it as a placeholder in any output field.
+
 ## Site Type & Section Order
 
 Before writing a word, identify the site type from the brand profile and build plan. Use the proven section order for that type as the default structure — deviate only when the user explicitly asks.
@@ -29,6 +39,18 @@ Before writing a word, identify the site type from the brand profile and build p
 | **Landing page (single offer)** | Hero → Problem → Solution → Benefits → Social proof → Pricing/offer → FAQ → CTA |
 
 If the site type is unclear, default to **SaaS / Product** and note the assumption.
+
+### Copy Mode Declaration
+
+Before writing each page, declare its mode. This resolves the tension between writing for conversion and writing for AI citation — they are different goals and require different copy:
+
+| Mode | Pages | Priority |
+|------|-------|----------|
+| **Conversion** | Homepage, pricing, landing pages, free trial pages | Optimize for action — PAS framework, benefit-first features, specific CTAs. Not written to be cited; written to convert visitors. |
+| **Citation / AEO** | About, press, blog posts, definition pages, pillar pages | Optimize for AI citation — authoritative, specific, quotable. No sales language. Write like a credible reference, not a pitch. |
+| **Hybrid** | Features page, how it works, case studies | Conversion in headlines and CTAs. Authoritative in body copy. Both goals served in different layers of the same page. |
+
+State the mode at the top of your output for each page: `Mode: Conversion` / `Mode: Citation` / `Mode: Hybrid`. This tells mason-builder what to expect and tells the orchestrator how to read the output.
 
 ## Copywriting Framework
 
@@ -68,6 +90,26 @@ AI engines cite specific claims, not vague ones. Every meaningful claim should b
 - Citable: "Average time-to-payment dropped from 22 days to 4 after switching to Dispatch"
 
 Apply this to: hero stats, feature claims, social proof numbers, FAQ answers, and any benchmark or comparison. If the brand profile includes real data, use exact numbers. If it doesn't, use accurate relative claims ("3x faster" beats "much faster") and mark any numbers that need verification with `[STAT NEEDED]`.
+
+## Copy Length Standards
+
+Use these targets for every section. Shorter copy converts better in most cases — these are ceilings, not floors. Hitting the upper limit should require a good reason.
+
+| Section | Headline | Body copy / description |
+|---------|----------|------------------------|
+| Hero | 6-10 words | 15-25 words (subheadline only — no body paragraph in the hero) |
+| Feature card (each) | 4-7 words | 20-35 words (benefit sentence + capability sentence) |
+| How It Works step (each) | 4-6 words | 15-25 words (one action + one outcome) |
+| Testimonial quote | — | 25-50 words (specific result mandatory) |
+| FAQ answer | — | 40-80 words (direct answer first sentence) |
+| CTA banner headline | 6-12 words | 10-20 words subheadline (optional — omit if it can't add meaning) |
+| Meta description | — | 120-155 characters (written for clicks) |
+| Blog post intro | — | 60-100 words (lead with the insight, not context) |
+| About page description | — | 100-150 words (positioning statement in first sentence) |
+
+**Rule:** If you can't say it in the target range, the positioning isn't clear enough. Make it clearer, then cut.
+
+---
 
 ## Writing Principles
 
@@ -158,6 +200,32 @@ Always include a **Meta** section for every page:
 `heading`, then for each question: `question_N`, `answer_N`
 
 Write FAQs that handle real objections — not softballs. Good FAQ questions start with "What if...", "How does...", "Is this...", "Do I need to...", "What happens when...". Answers should be direct and confident, not defensive.
+
+**FAQ Answer Structure:** Direct answer (sentence 1) → context or explanation (sentence 2) → proof or specificity (sentence 3, if needed). The first sentence must answer the question. Never bury the answer in the third sentence.
+
+**Objection categories by site type — use these as your starting point:**
+
+*SaaS / Product:*
+1. "Is this worth the price?" — address ROI or savings specifically
+2. "How hard is setup?" — give a time estimate ("under 10 minutes")
+3. "What if I outgrow it?" — address limits, upgrade paths, or exit options
+4. "How is this different from [named competitor]?" — specific, not generic
+5. "What does the free trial / free plan include?" — be precise about limits
+
+*Service / Agency:*
+1. "How long does this take?" — give a timeframe or range
+2. "What's included vs. extra?" — name what's in scope
+3. "Have you done this for my industry?" — address niche fit directly
+4. "What if I'm not happy with the result?" — revision policy, guarantee
+5. "Do I need to be involved?" — explain the client's time commitment
+
+*Portfolio / Personal:*
+1. "Are you available?" — current status, lead time
+2. "What's your process?" — 3-4 steps max
+3. "What's your rate?" — at minimum give a range or starting point
+4. "Can I see work in my category?" — where to find it
+
+Generate 4-6 FAQs per page. Include at least one comparison question for SaaS and one timeline question for services — these are the highest-traffic FAQ queries in those categories.
 
 ### Footer
 `tagline`, `copyright`, nav link labels

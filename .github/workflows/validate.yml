@@ -22,6 +22,7 @@ jobs:
           REQUIRED_AGENTS=(
             ".claude/agents/mason.md"
             ".claude/agents/mason-brand.md"
+            ".claude/agents/mason-brief.md"
             ".claude/agents/mason-copy.md"
             ".claude/agents/mason-builder.md"
             ".claude/agents/mason-deploy.md"
@@ -53,6 +54,8 @@ jobs:
 
           REQUIRED_COMMANDS=(
             ".claude/commands/mason-build.md"
+            ".claude/commands/mason-brief.md"
+            ".claude/commands/mason-revise.md"
             ".claude/commands/mason-preview.md"
             ".claude/commands/mason-deploy.md"
           )
@@ -142,4 +145,4 @@ jobs:
         run: |
           echo ""
           echo "Mason bundle validation passed."
-          echo "Agents: 7 | Commands: 3 | Rules: 1 | Examples: verified"
+          echo "Agents: 8 | Commands: 5 | Rules: 1 | Examples: verified"

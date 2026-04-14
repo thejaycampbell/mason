@@ -96,6 +96,8 @@ Same as Option 2. If your project has `.claude/identity/`, `.claude/voice/`, or 
 | Command | What it does |
 |---------|-------------|
 | `/mason:build` | Start a build session — Mason orients, plans, and builds |
+| `/mason:brief` | Start a brand-new project from scratch — runs an intake interview before building |
+| `/mason:revise` | Revise an existing build — targeted changes without re-running the full pipeline |
 | `/mason:preview` | Spin up a local preview server at `localhost:4242` |
 | `/mason:deploy` | Detect hosting config and deploy (or guide through setup) |
 | `/mason:audit` | Review an existing site for conversion, copy, and performance gaps |
@@ -122,6 +124,7 @@ mason/
 │   ├── agents/
 │   │   ├── mason.md          ← orchestrator
 │   │   ├── mason-brand.md    ← brand extraction
+│   │   ├── mason-brief.md    ← intake interview for blank projects
 │   │   ├── mason-copy.md     ← content writing
 │   │   ├── mason-builder.md  ← code generation
 │   │   ├── mason-deploy.md   ← deployment
@@ -129,6 +132,8 @@ mason/
 │   │   └── mason-seo.md      ← technical SEO
 │   ├── commands/
 │   │   ├── mason-build.md
+│   │   ├── mason-brief.md
+│   │   ├── mason-revise.md
 │   │   ├── mason-preview.md
 │   │   ├── mason-deploy.md
 │   │   ├── mason-audit.md
@@ -138,7 +143,9 @@ mason/
 ├── scripts/
 │   └── preview-server.js     ← optional local preview server (Node 18+, no deps)
 ├── examples/
-│   └── saas-landing.html     ← example output: SaaS landing page (plain HTML)
+│   ├── saas-landing.html           ← SaaS landing page (plain HTML)
+│   ├── nextjs-saas/                ← SaaS landing page (Next.js App Router)
+│   └── vite-react-agency/          ← Agency site (Vite + React, asset fallbacks)
 └── docs/
     ├── standalone.md
     ├── cadence-integration.md
@@ -154,8 +161,9 @@ Mason is a Claude Code agent bundle — no server, no framework, no dependencies
 
 Under the hood, specialized agents work in sequence:
 
-- **mason** (orchestrator) — maps routes, classifies site type, runs the session
-- **mason-brand** — reads the codebase, detects component libraries, dark mode, assets, competitive positioning
+- **mason** (orchestrator) — maps routes, classifies site type, runs the session; detects blank projects and routes to mason-brief
+- **mason-brief** — intake interview for new projects with no codebase; outputs a synthetic brand profile identical to mason-brand's format
+- **mason-brand** — reads existing codebase, detects component libraries, dark mode, assets, competitive positioning
 - **mason-copy** — writes all text using proven conversion frameworks (PAS, benefit-first)
 - **mason-builder** — generates code with performance patterns baked in (next/image, lazy loading, CLS prevention)
 - **mason-deploy** — detects platform (Vercel, Netlify, CI/CD) and handles deployment

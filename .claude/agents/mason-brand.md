@@ -151,6 +151,7 @@ Output the brand profile in this exact format. Be specific — no vague descript
 - Favicon: [filename, or "none found"]
 - Images: [list key images found, or "none"]
 - Icons: [icon set or files found, or "none"]
+- Asset status: [**present** — assets found / **minimal** — no logo or images found (mason-builder will use fallbacks)]
 
 ### Patterns
 - Page/layout structure: [brief description of how pages are structured]
@@ -162,6 +163,23 @@ Output the brand profile in this exact format. Be specific — no vague descript
 - Key differentiator: [what they lead with, or "unknown"]
 - Positioning angle: [how they want to be seen vs. the alternative, or "unknown"]
 ```
+
+## Required Fields Contract
+
+After extracting the brand profile, verify these required fields are filled. If a required field genuinely cannot be inferred from any source, write `[NEEDS BRIEF]` — not "unknown." The orchestrator will catch this and resolve it before passing to mason-copy.
+
+| Field | Required | If not inferable |
+|-------|----------|-----------------|
+| Name | yes | use `package.json` `name` field verbatim, or `[NEEDS BRIEF]` |
+| Description | yes | `[NEEDS BRIEF]` |
+| ICP (ideal customer profile) | yes | `[NEEDS BRIEF]` |
+| Positioning statement | yes | write `[MISSING — mason-copy must write one]` |
+| Primary color | yes | default to `#18181b` (zinc-900) and note the default |
+| Framework | yes | default to `plain HTML` and note the assumption |
+| Logo | no | "none found" — triggers asset fallbacks in mason-builder |
+| Competitive positioning | no | "none detected" |
+
+**Do not leave a required field blank or write "unknown."** A blank field silently corrupts downstream output. `[NEEDS BRIEF]` is a signal the orchestrator can act on. "unknown" is not.
 
 ## Output
 
