@@ -95,6 +95,51 @@ Mark optional props with `?`. Use union types for variants (`variant?: 'default'
 
 ---
 
+## Visual Direction
+
+Run this **before writing any code**. A technically correct site that looks like generic AI output is a failure. Pick a direction and commit to it.
+
+### Choose a Direction
+
+Read the brand profile — tone, colors, ICP, positioning — and select one:
+
+| Direction | Signals |
+|-----------|---------|
+| Brutally minimal | High-end B2B, dev tools, serious enterprise |
+| Editorial | Content-led, media, thought leadership |
+| Industrial | Hardware, infrastructure, manufacturing |
+| Luxury | Premium pricing, aspirational, high-touch service |
+| Playful | Consumer, early-stage, creative tools |
+| Geometric | Design-forward SaaS, visual product |
+| Retro-futurist | Brand personality play, nostalgia-forward |
+| Soft / organic | Wellness, community, human-centered |
+
+Do not mix directions. One direction, executed cleanly, beats a hedged blend every time.
+
+### Visual System Rules
+
+- **Background:** Flat empty backgrounds are rarely the best answer. Use gradients, mesh, subtle noise, or layered transparency to create atmosphere. The hero especially needs depth — a pure white or pure black background is a default, not a decision.
+- **Typography:** Pick fonts with character. Generic system fonts are a fallback, not a choice. Pair a distinctive display face with a readable body face when the brand supports it.
+- **Color:** One dominant field, selective accents. Evenly weighted multi-color palettes read as indecisive. The brand's primary color leads — everything else supports.
+- **Composition:** Break the grid when the hierarchy benefits from it. Asymmetry, overlap, and strong whitespace are design tools — use them. Default card grids are the lowest-energy layout choice.
+- **Motion:** One well-directed load sequence is stronger than twenty scattered hover effects. Animate to reveal hierarchy, not to decorate.
+
+### Anti-Patterns — Never Generate These
+
+- Interchangeable SaaS hero: centered headline, generic subheadline, two buttons, hero image
+- Generic card pile: three equal-weight cards with icon + title + two lines of text, no visual hierarchy
+- Random accent colors with no system
+- Motion on every element with no sequence logic
+- Purple gradient on white background unless the brand genuinely calls for it
+
+### Quality Gate
+
+Before generating the first component, answer: **Does this look like a real studio built it, or does it look like AI output?**
+
+If the answer is "AI output" — change the direction, add atmosphere to the background, make a bolder typographic choice, break the layout grid somewhere. Then proceed.
+
+---
+
 ## Conversion Architecture
 
 Run this checklist **before generating the Hero component**. These are the patterns that separate a site that looks good from one that converts. They are not optional.
