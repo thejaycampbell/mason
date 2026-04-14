@@ -1,6 +1,33 @@
 # Mason
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Requires Claude Code](https://img.shields.io/badge/Requires-Claude%20Code-orange.svg)](https://claude.ai/code)
+[![Node.js](https://img.shields.io/badge/Node.js-18%2B-green.svg)](https://nodejs.org)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+
 **Mason is your website creation agent.** It reads your codebase, learns your brand, writes your copy, generates your code, and ships your site — all in one conversation.
+
+---
+
+## Demo
+
+> **Screenshot/GIF coming soon** — if you've built something with Mason, [open an issue](https://github.com/thejaycampbell/mason/issues) and share it.
+
+**The conversation looks like this:**
+
+```
+You:   /mason:build
+
+Mason: I looked at your project — Next.js + Tailwind, dark mode active,
+       no hero section yet. Want me to start there? I'll write the copy
+       and build the component to match your existing setup.
+
+You:   Yes, go for it.
+
+Mason: [builds hero section with real copy, matching your stack and brand]
+       Preview at http://localhost:4242 — take a look.
+       Ready to ship? I can deploy this to Vercel in one command.
+```
 
 ---
 
@@ -9,12 +36,13 @@
 Mason produces fully working, content-filled websites. Not wireframes. Not specs. Not placeholder copy. Actual pages with real code and real content, in whatever stack you're already using.
 
 **The loop:**
-1. Reads your project — stack, colors, fonts, existing components, tone
-2. Asks where to start (or suggests, if you're not sure)
-3. Proposes a build plan, gets your approval
-4. Writes the copy, generates the code, previews it locally
-5. Iterates on your feedback until it's right
-6. Offers to deploy
+1. Reads your project — stack, colors, fonts, existing components, routes, tone
+2. Classifies site type and maps existing pages
+3. Asks where to start (or suggests, if you're not sure)
+4. Proposes a build plan, gets your approval
+5. Writes the copy, generates the code, previews it locally
+6. Iterates on your feedback until it's right
+7. Offers to deploy
 
 ---
 
@@ -65,6 +93,17 @@ Same as Option 2. If your project has `.claude/identity/`, `.claude/voice/`, or 
 
 ---
 
+## Requirements
+
+| Requirement | Version |
+|-------------|---------|
+| [Claude Code](https://claude.ai/code) | Latest |
+| Node.js *(preview server only)* | 18+ |
+
+No `npm install` needed. The preview server uses only Node.js built-ins.
+
+---
+
 ## Project Structure
 
 ```
@@ -83,7 +122,7 @@ mason/
 │   └── rules/
 │       └── mason.md          ← always-on principles
 ├── scripts/
-│   └── preview-server.js     ← optional local preview server
+│   └── preview-server.js     ← optional local preview server (Node 18+, no deps)
 └── docs/
     ├── standalone.md
     └── cadence-integration.md
@@ -97,20 +136,42 @@ Mason is a Claude Code agent bundle — no server, no framework, no dependencies
 
 Under the hood, five specialized agents work in sequence:
 
-- **mason** (orchestrator) — runs the session, directs the specialists
-- **mason-brand** — reads the codebase and extracts brand context
-- **mason-copy** — writes all the text (headlines, body, CTAs, meta)
-- **mason-builder** — generates the code in your detected stack
-- **mason-deploy** — handles deployment and setup guidance
-
-The preview server (`scripts/preview-server.js`) is optional. It requires Node.js but has no npm dependencies.
+- **mason** (orchestrator) — maps routes, classifies site type, runs the session
+- **mason-brand** — reads the codebase, detects component libraries, dark mode, assets
+- **mason-copy** — writes all text using proven conversion frameworks (PAS, benefit-first)
+- **mason-builder** — generates code with performance patterns baked in (next/image, lazy loading, CLS prevention)
+- **mason-deploy** — detects platform (Vercel, Netlify, CI/CD) and handles deployment
 
 ---
 
-## Requirements
+## Known Limitations
 
-- [Claude Code](https://claude.ai/code) — that's it for standalone use
-- Node.js — only needed for the preview server (`/mason:preview`)
+- **No browser-rendered preview** — preview server serves static files. Next.js/Vite projects need their own dev server running to see the full rendered output.
+- **Image generation** — Mason references images that exist in `public/` but does not generate or source new images.
+- **Multi-page builds** — Mason builds one page or section at a time. Full site generation across many pages works but takes multiple sessions.
+- **Authenticated pages** — Mason does not handle auth-gated routes or dynamic data fetching beyond static content.
+
+---
+
+## Roadmap
+
+- [ ] `examples/` — sample projects built with Mason for common site types
+- [ ] `mason-audit` agent — reviews an existing site and identifies conversion gaps
+- [ ] Storybook integration — generate component stories alongside components
+- [ ] Multi-page session — build a full site in one go with a structured plan
+- [ ] `mason-seo` agent — technical SEO audit + fixes post-build
+
+---
+
+## Contributing
+
+Contributions are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) to get started.
+
+---
+
+## License
+
+[MIT](LICENSE) — © 2026 Jay Campbell
 
 ---
 
