@@ -1,0 +1,13 @@
+# Mason working directories
+_preview/
+.superpowers/
+
+# Playwright MCP snapshots
+.playwright-mcp/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node (for preview server)
+node_modules/
