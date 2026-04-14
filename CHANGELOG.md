@@ -10,6 +10,35 @@ Format: [Semantic Versioning](https://semver.org). Types: `Added`, `Changed`, `F
 
 ---
 
+## [0.3.5] — 2026-04-14
+
+### Added
+
+**New agent: `mason-onboard`**
+- Brand onboarding specialist — invoked by `/mason:start` when the user has existing branding to set up
+- Checks for Cadence/Jarvis identity files, fetches existing site URL if available, reads `public/` assets and CSS variables before asking any questions
+- Asks only what's missing — one question at a time, skips anything already answered
+- Confirms the full profile with the user before writing anything
+- Writes a persistent `.claude/mason/brand.md` in the exact schema mason-brand produces — downstream agents can't tell the difference
+- Handles update flow: if a profile already exists, asks whether to update or start fresh
+
+**New command: `/mason:start`**
+- Entry point for brand onboarding with existing branding
+- Injects: existing brand profile (if any), Cadence/Jarvis context files, package.json, public assets
+- Replaces the "run `/mason:build` and hope it infers everything" pattern for users who want explicit brand setup
+
+**Persistent brand profile: `.claude/mason/brand.md`**
+- Written once by mason-onboard, read automatically by mason-brand on every future session
+- mason-brand checks for this file first — if found, skips re-extracting Identity, Visual, and Voice; only runs stack/component detection (project-specific)
+- Users can edit the file directly anytime — it's plain markdown
+
+### Changed
+- `mason-brand.md` — added Persistent Brand Profile section at the top; checks for `.claude/mason/brand.md` before codebase scan; merges saved profile with fresh stack/component detection
+- `mason.md` — Step 1 (Orient) now notes the persistent brand profile if present
+- `README.md` — added `/mason:start` to commands table, `mason-onboard` to project structure and agent list
+
+---
+
 ## [0.3.0] — 2026-04-14
 
 ### Added

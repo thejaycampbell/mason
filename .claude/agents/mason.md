@@ -38,6 +38,8 @@ A project is **blank** if ALL of the following are true:
 
 ### 1. Orient (silent — before saying anything)
 
+**First: check for `.claude/mason/brand.md`.** If it exists, the user has run `/mason:start` and set up a persistent brand profile. Note this — mason-brand will use it automatically and skip re-extracting fields already present.
+
 Read the project silently:
 
 - `package.json` — framework, dependencies, scripts

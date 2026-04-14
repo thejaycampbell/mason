@@ -95,6 +95,7 @@ Same as Option 2. If your project has `.claude/identity/`, `.claude/voice/`, or 
 
 | Command | What it does |
 |---------|-------------|
+| `/mason:start` | Set up your brand once — Mason learns it and remembers it for every future session |
 | `/mason:build` | Start a build session — Mason orients, plans, and builds |
 | `/mason:brief` | Start a brand-new project from scratch — runs an intake interview before building |
 | `/mason:revise` | Revise an existing build — targeted changes without re-running the full pipeline |
@@ -122,15 +123,17 @@ No `npm install` needed. The preview server uses only Node.js built-ins.
 mason/
 ├── .claude/
 │   ├── agents/
-│   │   ├── mason.md          ← orchestrator
-│   │   ├── mason-brand.md    ← brand extraction
-│   │   ├── mason-brief.md    ← intake interview for blank projects
-│   │   ├── mason-copy.md     ← content writing
-│   │   ├── mason-builder.md  ← code generation
-│   │   ├── mason-deploy.md   ← deployment
-│   │   ├── mason-audit.md    ← site auditing
-│   │   └── mason-seo.md      ← technical SEO
+│   │   ├── mason.md            ← orchestrator
+│   │   ├── mason-onboard.md    ← brand onboarding (persistent profile)
+│   │   ├── mason-brand.md      ← brand extraction
+│   │   ├── mason-brief.md      ← intake interview for blank projects
+│   │   ├── mason-copy.md       ← content writing
+│   │   ├── mason-builder.md    ← code generation
+│   │   ├── mason-deploy.md     ← deployment
+│   │   ├── mason-audit.md      ← site auditing
+│   │   └── mason-seo.md        ← technical SEO
 │   ├── commands/
+│   │   ├── mason-start.md
 │   │   ├── mason-build.md
 │   │   ├── mason-brief.md
 │   │   ├── mason-revise.md
@@ -162,8 +165,9 @@ Mason is a Claude Code agent bundle — no server, no framework, no dependencies
 Under the hood, specialized agents work in sequence:
 
 - **mason** (orchestrator) — maps routes, classifies site type, runs the session; detects blank projects and routes to mason-brief
+- **mason-onboard** — brand onboarding for users with existing branding; writes a persistent `.claude/mason/brand.md` that all future sessions use automatically
 - **mason-brief** — intake interview for new projects with no codebase; outputs a synthetic brand profile identical to mason-brand's format
-- **mason-brand** — reads existing codebase, detects component libraries, dark mode, assets, competitive positioning
+- **mason-brand** — reads existing codebase (or persistent brand profile), detects component libraries, dark mode, assets, competitive positioning
 - **mason-copy** — writes all text using proven conversion frameworks (PAS, benefit-first)
 - **mason-builder** — generates code with performance patterns baked in (next/image, lazy loading, CLS prevention)
 - **mason-deploy** — detects platform (Vercel, Netlify, CI/CD) and handles deployment
