@@ -54,12 +54,14 @@ jobs:
           MISSING=()
 
           REQUIRED_COMMANDS=(
-            ".claude/commands/mason-start.md"
-            ".claude/commands/mason-build.md"
-            ".claude/commands/mason-brief.md"
-            ".claude/commands/mason-revise.md"
-            ".claude/commands/mason-preview.md"
-            ".claude/commands/mason-deploy.md"
+            ".claude/commands/mason/start.md"
+            ".claude/commands/mason/build.md"
+            ".claude/commands/mason/brief.md"
+            ".claude/commands/mason/revise.md"
+            ".claude/commands/mason/preview.md"
+            ".claude/commands/mason/deploy.md"
+            ".claude/commands/mason/audit.md"
+            ".claude/commands/mason/seo.md"
           )
 
           for file in "${REQUIRED_COMMANDS[@]}"; do
@@ -147,4 +149,4 @@ jobs:
         run: |
           echo ""
           echo "Mason bundle validation passed."
-          echo "Agents: 9 | Commands: 6 | Rules: 1 | Examples: verified"
+          echo "Agents: 9 | Commands: 8 | Rules: 1 | Examples: verified"
