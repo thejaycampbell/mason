@@ -1,3 +1,4 @@
+[![RepoRanker](https://reporanker.com/badge/thejaycampbell/mason)](https://reporanker.com/repos/thejaycampbell/mason)
 # Mason
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
